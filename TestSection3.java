@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.lang.Exception;
 
 public class TestSection3 {
@@ -35,11 +37,52 @@ public class TestSection3 {
         }
     }
 
-    public static void testZip()
+    //I do not have a test to check that it throws an exception. I'm aware that I should test it, though.
+    public static void testZip() throws TestFailedException
     {
+        List<String> indices = new ArrayList<String>();
+        List<Integer> values = new ArrayList<Integer>();
+        Map<String, List<Integer>> expected = new HashMap<String, List<Integer>>();
+
+        indices.add("A");
+        indices.add("B");
+        indices.add("C");
+        indices.add("A");
+
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+
+        //How can I create the array list and add the values in one line?
+        List<Integer> expectedA = new ArrayList<Integer>();
+        expectedA.add(1);
+        expectedA.add(4);
+
+        List<Integer> expectedB = new ArrayList<Integer>();
+        expectedB.add(2);
+
+        List<Integer> expectedC = new ArrayList<Integer>();
+        expectedC.add(3);
+
+        expected.put("A", expectedA);
+        expected.put("B", expectedB);
+        expected.put("C", expectedC);
+
+        try {
+            Map<String, List<Integer>> result = ZipExample.zip(indices, values);
+            if (!expected.equals(result))
+            {
+                throw new TestFailedException("Zipping is not working!" , expected, result);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new TestFailedException("Zipping threw an error!", expected, e);
+        }
     }
 
-    public static void testLinkedListReverse()
+    public static void testLinkedListReverse() throws TestFailedException
     {
     }
 
@@ -48,9 +91,11 @@ public class TestSection3 {
         try
         {
             testReverseList();
+            testZip();
         }
         catch (Exception e)
         {
+            System.out.println("Failed!");
             System.out.println(e);
         }
     }

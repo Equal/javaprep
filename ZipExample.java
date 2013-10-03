@@ -47,7 +47,6 @@ public class ZipExample {
                 output.put(index, list);
             }
         }
-        System.out.println(output);
         return output;
     }
 }
