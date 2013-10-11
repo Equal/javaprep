@@ -1,0 +1,3 @@
+I didn't know this, but I am reading through an algorithms book (the one mentioned in the blog post you sent me). Your hint gave away the answer, though xD. Too good of a hint =P.
+
+Answer: Trie
