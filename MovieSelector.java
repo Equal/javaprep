@@ -7,8 +7,7 @@
 //U V W X Y
 //Z
 //
-//In order to spell the movie "UP", the function would output "ddddd!u!"
-
+//In order to spell the movie "UP", the function would output "dddd!u!"
 
 
 
@@ -16,7 +15,9 @@ public class MovieSelector {
     
     public static void main(String[] args)
     {
-        DirectionGenerator dg = new DirectionGenerator("Up", 5);
+        DirectionGenerator dg = new DirectionGenerator("Theros", 5);
+        System.out.println(dg.directions());
+        dg = new DirectionGenerator("up", 5);
         System.out.println(dg.directions());
     }
 
@@ -105,8 +106,9 @@ public class MovieSelector {
         private Coordinate locationOfLetter(char letter, int gridWidth)
         {
             int index = alphabet.indexOf(letter) + 1; // To deal with 'A'
-            int row = index / gridWidth + 1;
-            int col = index % gridWidth; //+1 Not needed here since it is added on index
+            int row = index % gridWidth == 0 ? ((int)Math.floor(index/gridWidth)) : ((int)Math.floor(index / gridWidth)) + 1;
+            int col = index % gridWidth == 0 ? 5 : index % gridWidth; 
+            System.out.println(letter + " index " + index + " row " + row + " col " + col);
             return new Coordinate(col, row);
         }
     }
