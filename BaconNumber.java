@@ -33,7 +33,7 @@
 
 //Taken from talentbuddy.co
 
-import java.util.Comparator;
+import java.lang.Comparable;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -43,7 +43,7 @@ import java.util.TreeSet;
 
 public class BaconNumber
 {
-    public static class Node implements Comparator<Node>{
+    public static class Node implements Comparable<Node>{
         public String value;
         public Set<Node> neighbours;
         public Node(String val)
@@ -62,9 +62,10 @@ public class BaconNumber
             neighbours.add(newNode);
         }
 
-        public int compare(Node n1, Node n2)
+        @Override
+        public int compareTo(Node n)
         {
-            return n1.value.compareTo(n2.value);
+            return this.value.compareTo(n.value);
         }
     }
     public static void main(String[] args)
@@ -122,7 +123,6 @@ public class BaconNumber
 
         //Okay, we have the graph, now we have to traverse it
         Node baconNode = allNodes.get("Kevin Bacon");
-        System.out.println("TOTAL " + allNodes.size());
         //Assume baconNode always exists
         
         Set<Node> traversedNodes = new HashSet<Node>();
